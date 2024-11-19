@@ -41,7 +41,7 @@ const Banner = () => {
                   src="https://www.youtube.com/embed/hNN9Q3GuWEM?si=bcLhxcvD6Bc3HG9q"
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen="true"
+                  allowfullscreen
                 ></iframe>
               </div>
             </div>

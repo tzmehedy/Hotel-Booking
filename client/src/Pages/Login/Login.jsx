@@ -1,6 +1,9 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+
 const Login = () => {
+
+
   return (
     <div className="mt-20">
       <div className="hero bg-base-200 min-h-screen">
@@ -35,7 +38,7 @@ const Login = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-[#f99810f6] text-white font-bold">
+                <button  className="btn bg-[#f99810f6] text-white font-bold">
                   Login
                 </button>
               </div>
