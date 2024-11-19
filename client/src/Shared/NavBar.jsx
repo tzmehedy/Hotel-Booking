@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png"
 import { MdLogin } from "react-icons/md";
 
@@ -9,7 +9,7 @@ const NavBar = () => {
     const [scrollClass, setScrollClass] = useState();
 
     const changeNavbarStyle = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 10) {
         setScrollClass(true);
       } else {
         setScrollClass(false);
@@ -22,20 +22,20 @@ const NavBar = () => {
     const navLink = (
       <>
         <li>
-          <Link to={"/"}>Home</Link>
+          <NavLink to={"/"}>Home</NavLink>
         </li>
         <li>
-          <Link to={"/rooms"}>Rooms</Link>
+          <NavLink to={"/rooms"}>Rooms</NavLink>
         </li>
         <li>
-          <Link to={"/myBookings"}>My Bookings</Link>
+          <NavLink to={"/myBookings"}>My Bookings</NavLink>
         </li>
         
       </>
     );
     return (
       <div
-        className={`navbar z-50 fixed top-0 transition-all duration-300 ${
+        className={`navbar z-50 fixed top-0 transition-all duration-10 shadow-lg ${
           scrollClass ? "bg-[#0E1317]" : ""
         }`}
       >
@@ -64,9 +64,9 @@ const NavBar = () => {
               {navLink}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+          <Link className="text-[#f99810f6] text-xl">
             <img className="w-16 md:w-36 h-7 md:h-12" src={logo} alt="" />
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-[#f99810f6] font-bold">
@@ -77,7 +77,10 @@ const NavBar = () => {
           <a className="btn bg-[#f99810f6] font-bold text-white border-none ">
             Book Now
           </a>
-          <Link className=" text-3xl md:text-5xl text-[#f99810f6]">
+          <Link
+            to={"/login"}
+            className=" text-3xl md:text-5xl text-[#f99810f6]"
+          >
             <MdLogin></MdLogin>
           </Link>
         </div>

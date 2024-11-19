@@ -8,7 +8,7 @@ const Root = () => {
     return (
       <div>
         {/* Nav Bar */}
-        <div className={``}>
+        <div className=" ">
           <NavBar></NavBar>
         </div>
 
