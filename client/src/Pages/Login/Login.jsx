@@ -1,4 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="mt-20">
@@ -42,11 +43,17 @@ const Login = () => {
             <div className="text-center">
               <p>Or,</p>
             </div>
-            <div className="flex justify-center items-center space-x-3 mb-10">
+            <div className="flex justify-center items-center space-x-3 mb-2">
               <p>Login With </p>
               <button>
                 <FcGoogle className="text-2xl"></FcGoogle>
               </button>
+            </div>
+            <div className="mb-10 p-2">
+              <p>
+                You are not register!!! Please{" "}
+                <Link to={"/register"} className="underline text-[#f99810f6]">Register</Link>
+              </p>
             </div>
           </div>
         </div>
