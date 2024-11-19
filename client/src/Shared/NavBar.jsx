@@ -34,7 +34,7 @@ const NavBar = () => {
     );
     return (
       <div
-        className={`navbar fixed top-0 transition-all duration-300 ${
+        className={`navbar z-50 fixed top-0 transition-all duration-300 ${
           scrollClass ? "bg-[#0E1317]" : ""
         }`}
       >
@@ -64,16 +64,16 @@ const NavBar = () => {
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">
-            <img className="w-320 h-12" src={logo} alt="" />
+            <img className="w-16 md:w-36 h-7 md:h-12" src={logo} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-white font-bold">
+          <ul className="menu menu-horizontal px-1 text-[#f99810f6] font-bold">
             {navLink}
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn bg-[#f99810f6] font-bold text-white border-none ">Book Now</a>
         </div>
       </div>
     );
