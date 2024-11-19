@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png"
+import { MdLogin } from "react-icons/md";
 
 
 
@@ -72,8 +73,13 @@ const NavBar = () => {
             {navLink}
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn bg-[#f99810f6] font-bold text-white border-none ">Book Now</a>
+        <div className="navbar-end space-x-3">
+          <a className="btn bg-[#f99810f6] font-bold text-white border-none ">
+            Book Now
+          </a>
+          <Link className=" text-3xl md:text-5xl text-[#f99810f6]">
+            <MdLogin></MdLogin>
+          </Link>
         </div>
       </div>
     );
