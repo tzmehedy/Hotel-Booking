@@ -1,7 +1,34 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const {user,login} = useContext(AuthContext)
+
+  const handelLoginWithEmailPassword = (e) =>{
+    e.preventDefault()
+
+    const form = e.target 
+
+    const email = form.email.value 
+    const password = form.password.value
+
+    login(email, password)
+    .then(result=>{
+      console.log(result)
+    })
+    .catch(error=>{
+      console.log(error.message)
+    })
+
+
+    console.log(user)
+
+
+
+
+  }
 
 
   return (
@@ -12,7 +39,7 @@ const Login = () => {
             <h1 className="text-5xl text-[#f99810f6] font-bold">Login now!</h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <form className="card-body">
+            <form onSubmit={handelLoginWithEmailPassword} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
