@@ -12,6 +12,8 @@ const NavBar = () => {
     const [scrollClass, setScrollClass] = useState();
     const { user, logout } = useContext(AuthContext);
 
+    console.log(user)
+
     const changeNavbarStyle = () => {
       if (window.scrollY > 10) {
         setScrollClass(true);
@@ -92,11 +94,10 @@ const NavBar = () => {
           <a className="btn bg-[#f99810f6] font-bold text-white border-none ">
             Book Now
           </a>
-
           {user ? (
             <>
               <img
-               
+                title={user.displayName}
                 className="w-10 h-10 rounded-full"
                 src={user.photoURL}
                 alt=""

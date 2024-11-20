@@ -6,7 +6,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
 
-  const {user,createUser,profileUpdate} = useContext(AuthContext)
+  const { user, setUser,createUser, profileUpdate } = useContext(AuthContext);
 
   const handelRegister = (e) =>{
     e.preventDefault()
@@ -24,6 +24,7 @@ const Register = () => {
     .then(result=>
     {
       result && profileUpdate(name, photo)
+      setUser({...user, photoURL:photo, displayName:name})
     }
     )
     .catch(error=>console.log(error.message))
