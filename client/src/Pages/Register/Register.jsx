@@ -18,12 +18,12 @@ const Register = () => {
     const password = form.password.value 
     const photo = form.photo.value
     
-    console.log(name, email, password, photo)
+  
     
     createUser(email,password)
     .then(result=>
     {
-      result && profileUpdate(name, photo); 
+      result && profileUpdate(name, photo)
     }
     )
     .catch(error=>console.log(error.message))

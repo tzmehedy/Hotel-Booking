@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.png"
 import { MdLogin } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 
 
 const NavBar = () => {
     const [scrollClass, setScrollClass] = useState();
+    const { user, logout } = useContext(AuthContext);
 
     const changeNavbarStyle = () => {
       if (window.scrollY > 10) {
@@ -33,6 +37,17 @@ const NavBar = () => {
         
       </>
     );
+
+    const handelLogout = ()=>{
+      logout()
+      .then(result=>{
+        toast.success("Logout Successfully")
+      })
+      .catch(error=>{
+        toast.error(error.message)
+      })
+
+    }
     return (
       <div
         className={`navbar z-50 fixed top-0 transition-all duration-10 shadow-lg ${
@@ -77,12 +92,30 @@ const NavBar = () => {
           <a className="btn bg-[#f99810f6] font-bold text-white border-none ">
             Book Now
           </a>
-          <Link
-            to={"/login"}
-            className=" text-3xl md:text-5xl text-[#f99810f6]"
-          >
-            <MdLogin></MdLogin>
-          </Link>
+
+          {user ? (
+            <>
+              <img
+               
+                className="w-10 h-10 rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
+              <Link
+                onClick={handelLogout}
+                className=" text-3xl md:text-5xl text-[#f99810f6]"
+              >
+                <CiLogout></CiLogout>
+              </Link>
+            </>
+          ) : (
+            <Link
+              to={"/login"}
+              className=" text-3xl md:text-5xl text-[#f99810f6]"
+            >
+              <MdLogin></MdLogin>
+            </Link>
+          )}
         </div>
       </div>
     );
