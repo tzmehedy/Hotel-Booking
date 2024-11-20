@@ -36,7 +36,6 @@ const NavBar = () => {
         <li>
           <NavLink to={"/myBookings"}>My Bookings</NavLink>
         </li>
-        
       </>
     );
 

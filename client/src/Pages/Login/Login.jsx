@@ -5,7 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const {user,login} = useContext(AuthContext)
+  const { user, login, loginWithGoogle } = useContext(AuthContext);
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -25,15 +25,21 @@ const Login = () => {
     .catch(error=>{
       toast.error(error.message)
     })
-
-
-    console.log(user)
-
-
-
-
   }
+ const handelLoginWithGoogle = () =>{
 
+  loginWithGoogle()
+  .then(result=>{
+    toast.success("Login SuccessFully")
+    navigate(location.state ? location.state : "/");
+  })
+  .catch(error=>{
+    toast.error(error.message)
+  })
+
+
+
+ }
 
   return (
     <div className="mt-20">
@@ -79,7 +85,7 @@ const Login = () => {
             </div>
             <div className="flex justify-center items-center space-x-3 mb-2">
               <p>Login With </p>
-              <button>
+              <button onClick={handelLoginWithGoogle}>
                 <FcGoogle className="text-2xl"></FcGoogle>
               </button>
             </div>
