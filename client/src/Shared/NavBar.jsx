@@ -33,9 +33,11 @@ const NavBar = () => {
         <li>
           <NavLink to={"/rooms"}>Rooms</NavLink>
         </li>
-        <li>
+        {
+          user ? <li>
           <NavLink to={"/myBookings"}>My Bookings</NavLink>
-        </li>
+        </li> : ""
+        }
       </>
     );
 
