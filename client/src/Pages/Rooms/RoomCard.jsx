@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const RoomCard = ({room}) => {
     
@@ -22,7 +23,7 @@ const RoomCard = ({room}) => {
                 : "No Offer is available at this moment"}
             </p>
             <div className="card-actions justify-end">
-              <button className="btn bg-[#f99810f6]">Book Now</button>
+              <Link to={`/roomDetails/${room._id}`} className="btn bg-[#f99810f6]">Book Now</Link>
             </div>
           </div>
         </div>
