@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import img1 from "../../assets/images/icons/clening.png"
 import img2 from "../../assets/images/icons/breakfast.png"
 import img3 from "../../assets/images/icons/carparking.png"
@@ -10,15 +10,128 @@ import img6 from "../../assets/images/icons/pickup.png"
 import img7 from "../../assets/images/icons/smimmingpool.png"
 import img8 from "../../assets/images/icons/spa.png"
 import img9 from "../../assets/images/icons/wifi.png"
+import { AuthContext } from '../../Provider/AuthProvider';
 
 
 const RoomDetails = () => {
     const roomDetailsInfo = useLoaderData()
+    const [check,setCheck] = useState({})
+    const {user} = useContext(AuthContext)
+   
+
+    const getBooksInfo= (e) =>{
+      e.preventDefault() 
+      const form = e.target 
+      const checkIn = form.checkIn.value 
+      const checkOut = form.checkOut.value 
+      const noOfRooms = form.noOfRooms.value
+      const email = user?.email
+      const price = roomDetailsInfo.pricePerNight
+      const totalPrice = noOfRooms*price
+
+      const booksInfo = {
+        checkIn,
+        checkOut,
+        noOfRooms,
+        email,
+        price,
+        totalPrice,
+      };
+      setCheck(booksInfo)
+    }
+
+    const handelBooks = () =>{
+      
+    }
 
     return (
-      <div className="mt-20 flex p-3 space-x-3">
-        <div className="w-2/3 bg-gray-100 ">
-        
+      <div className="mt-20 flex flex-col-reverse md:flex-row p-3 md:space-x-3">
+        <div className="w-full md:w-2/3 bg-gray-100 p-3 space-y-3 mt-5">
+          <h1 className="font-bold">Your Price</h1>
+          <hr className="" />
+          <p>Room Size: {roomDetailsInfo.roomSize}</p>
+          <p className="">Price: ${roomDetailsInfo.pricePerNight}/per night</p>
+          <p>Total Rooms Available: {roomDetailsInfo.totalRoom}</p>
+          <p className="text-[#f99810f6] font-bold">
+            Available: {roomDetailsInfo.availability ? "Yes" : "No"}
+          </p>
+          <p className="text-[#f99810f6] font-bold">
+            Offer:{" "}
+            {roomDetailsInfo.specialOffers
+              ? roomDetailsInfo.specialOffers
+              : "No Offer is available at this moment"}
+          </p>
+
+          <form onSubmit={getBooksInfo} className="space-y-2">
+            <div>
+              <label htmlFor="checkIn">Check In</label> <br />
+              <input
+                className="px-3 py-2 border-2"
+                type="date"
+                name="checkIn"
+                id=""
+              />
+            </div>
+            <div>
+              <label htmlFor="checkIn">Check Out</label> <br />
+              <input
+                className="px-3 py-2 border-2"
+                type="date"
+                name="checkOut"
+                id=""
+              />
+            </div>
+            <div>
+              <label htmlFor="checkIn">Number of Rooms</label> <br />
+              <input
+                className="px-3 py-2 border-2"
+                type="number"
+                name="noOfRooms"
+                id=""
+              />
+            </div>
+            <button
+              disabled={roomDetailsInfo.totalRoom === 0}
+              className="btn text-white bg-[#f99810f6]"
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+            >
+              Book Now
+            </button>
+          </form>
+
+          <dialog
+            id="my_modal_5"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <div className="flex justify-between">
+                <h3 className="font-bold text-lg">
+                  Check In: {check?.checkIn}
+                </h3>
+                <h3 className="font-bold text-lg">
+                  Check Out: {check?.checkOut}
+                </h3>
+              </div>
+              <div className="mt-2 flex justify-between">
+                <p>Email: {check.email}</p>
+                <p className="">No Of Rooms: {check.noOfRooms}</p>
+              </div>
+              <div>
+                <p>Total Price: ${check.totalPrice}</p>
+              </div>
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in div, it will close the modal */}
+                  <div className="space-x-3">
+                    <button className="btn">close</button>
+                    <Link onClick={handelBooks} to={"/rooms"} className="btn bg-[#f99810f6]">
+                      Book
+                    </Link>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
 
         <div className="space-y-10">

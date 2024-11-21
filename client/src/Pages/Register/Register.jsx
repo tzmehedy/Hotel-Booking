@@ -1,12 +1,13 @@
 
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const Register = () => {
 
-  const { user, setUser,createUser, profileUpdate } = useContext(AuthContext);
+  const { user, setUser,createUser, profileUpdate } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handelRegister = (e) =>{
     e.preventDefault()
@@ -25,6 +26,8 @@ const Register = () => {
     {
       result && profileUpdate(name, photo)
       setUser({...user, photoURL:photo, displayName:name})
+      navigate("/")
+
     }
     )
     .catch(error=>console.log(error.message))

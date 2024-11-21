@@ -13,17 +13,9 @@ const RoomCard = ({room}) => {
             <h2 className="card-title">{room.category}</h2>
             <p>{room.roomDescription.substring(0, 70)}...</p>
             <p className="font-bold">Price: ${room.pricePerNight} /per-night</p>
-            <p className="text-[#f99810f6] font-bold">
-              Available: {room.availability ? "Yes" : "No"}
-            </p>
-            <p className="text-[#f99810f6] font-bold">
-              Offer:{" "}
-              {room.specialOffers
-                ? room.specialOffers
-                : "No Offer is available at this moment"}
-            </p>
+            
             <div className="card-actions justify-end">
-              <Link to={`/roomDetails/${room._id}`} className="btn bg-[#f99810f6]">Book Now</Link>
+              <Link to={`/roomDetails/${room._id}`} className="btn bg-[#f99810f6]">Show Details</Link>
             </div>
           </div>
         </div>

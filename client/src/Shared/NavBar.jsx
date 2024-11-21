@@ -12,8 +12,6 @@ const NavBar = () => {
     const [scrollClass, setScrollClass] = useState();
     const { user, logout } = useContext(AuthContext);
 
-    console.log(user)
-
     const changeNavbarStyle = () => {
       if (window.scrollY > 10) {
         setScrollClass(true);
