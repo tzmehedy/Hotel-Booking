@@ -1,0 +1,52 @@
+[
+  {
+    "category": "Luxury Room",
+    "roomDescription": "Indulge in unparalleled sophistication in our Luxury Room, featuring a spacious layout with elegant furnishings and breathtaking views. The room boasts a plush king-sized bed, premium linens, and a seating area for ultimate comfort. Modern amenities include a large flat-screen TV, high-speed Wi-Fi, and a mini-bar stocked with gourmet treats. The en-suite bathroom is a haven of relaxation, offering a deep soaking tub, rain shower, and luxury toiletries. Perfect for romantic getaways or upscale stays, this room ensures a memorable experience.",
+    "pricePerNight": 300,
+    "roomSize": "50 sqm",
+    "availability": true,
+    "roomImages": "https://i.ibb.co.com/qyNxVp2/luxury-bedroom-interior-with-rich-furniture-scenic-view-from-walkout-deck-1.jpg",
+    "specialOffers": "Complimentary bottle of wine upon arrival",
+    "totalRoom": 3
+  },
+  {
+    "category": "Couple",
+    "roomDescription": "Discover the perfect blend of style and functionality in our Small Suite, designed for travelers seeking extra space and comfort. The suite features a cozy living area, a queen-sized bed with soft linens, and contemporary decor. Guests can enjoy modern amenities such as a flat-screen TV, coffee maker, and high-speed Wi-Fi. The en-suite bathroom includes a walk-in shower, fluffy towels, and complimentary toiletries. Ideal for couples or solo travelers, this suite offers a tranquil escape with everything you need for a delightful stay.",
+    "pricePerNight": 180,
+    "roomSize": "40 sqm",
+    "availability": true,
+    "roomImages": "https://i.ibb.co.com/42RtP53/pillow-bed.jpg",
+    "specialOffers": "10% discount for weekend stays",
+    "totalRoom": 4
+  },
+  {
+    "category": "Single Room",
+    "roomDescription": "Our Single Room is thoughtfully designed to provide maximum comfort for solo travelers. Featuring a comfortable single bed with premium linens, a work desk, and ample lighting, this room is perfect for both business and leisure stays. Guests can enjoy high-speed Wi-Fi, a flat-screen TV, and complimentary tea and coffee facilities. The en-suite bathroom is equipped with a refreshing shower, soft towels, and basic amenities. With its compact yet functional layout, this room offers a cozy retreat at an affordable price.",
+    "pricePerNight": 80,
+    "roomSize": "20 sqm",
+    "availability": false,
+    "roomImages": "https://i.ibb.co.com/k3wyNX1/bedroom-interior.jpg",
+    "specialOffers": "None",
+    "totalRoom": 0
+  },
+  {
+    "category": "Family Room",
+    "roomDescription": "Create unforgettable memories with your loved ones in our spacious Family Room, designed to accommodate families comfortably. This room features a queen-sized bed and two additional single beds, making it ideal for parents and children. A cozy seating area and ample storage space ensure a stress-free stay. Modern conveniences include a flat-screen TV, high-speed Wi-Fi, and a mini-fridge. The en-suite bathroom offers a bathtub, shower, and complimentary toiletries, perfect for families with young kids. This room ensures a delightful and relaxing experience for everyone.",
+    "pricePerNight": 200,
+    "roomSize": "45 sqm",
+    "availability": true,
+    "roomImages": "https://i.ibb.co.com/0tHWXPp/modern-studio-apartment-design-with-bedroom-living-space.jpg",
+    "specialOffers": "Kids under 12 stay free",
+    "totalRoom": 2
+  },
+  {
+    "category": "Double Room",
+    "roomDescription": "Relax and unwind in our Double Room, featuring two comfortable twin beds or a single queen-sized bed, perfect for friends or couples. This room is equipped with modern amenities including a flat-screen TV, high-speed Wi-Fi, and a coffee maker to enhance your stay. The room’s tasteful decor and large windows create a bright and inviting atmosphere. The en-suite bathroom includes a walk-in shower, fresh towels, and complimentary toiletries. This room offers great value and comfort for travelers looking for a peaceful retreat.",
+    "pricePerNight": 120,
+    "roomSize": "30 sqm",
+    "availability": true,
+    "roomImages": "https://i.ibb.co.com/Jz6YZjL/bangkok-thailand-august-12-2016-beautiful-luxury-bedroom-int.jpg",
+    "specialOffers": "Free breakfast included",
+    "totalRoom": 5
+  }
+]

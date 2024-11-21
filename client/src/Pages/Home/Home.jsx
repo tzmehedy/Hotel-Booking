@@ -1,5 +1,6 @@
 import Banner from "../../Components/Banner/Banner";
 import Accommodations from "./Accommodations";
+import Feature from "./Feature";
 import GetInTouch from "./GetInTouch";
 
 
@@ -9,6 +10,10 @@ const Home = () => {
         <Banner></Banner>
         <div className="container mx-auto">
           <Accommodations></Accommodations>
+        </div>
+
+        <div className="container mx-auto">
+          <Feature></Feature>
         </div>
 
         <div className="container mx-auto">
