@@ -3,10 +3,16 @@ import { CiEdit } from "react-icons/ci"
 import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { MdOutlineReviews } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
+  const { reviewButton } = useContext(AuthContext);
   const d1 = new Date(info.checkIn)
   const d2 = new Date()
+
+  console.log(reviewButton)
  
  
   const handelDelete = () => {
@@ -49,15 +55,21 @@ const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
       <td>{info.noOfRooms}</td>
       <td>{info.totalPrice}</td>
       <td className="flex text-xl space-x-3">
-        <Link to={`/updateBookings/${info?._id}`}>
+        <Link title="Edit" to={`/updateBookings/${info?._id}`}>
           <CiEdit></CiEdit>
         </Link>
         <button
+          title="Cancel"
           disabled={d1.getDate() - 1 === d2.getDate()}
           onClick={handelDelete}
         >
           <MdCancel></MdCancel>
         </button>
+        <Link title="Give Review" to={`/review/${info.category}`}>
+          <button disabled={reviewButton===false}>
+            <MdOutlineReviews></MdOutlineReviews>
+          </button>
+        </Link>
       </td>
     </tr>
   );

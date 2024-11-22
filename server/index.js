@@ -26,14 +26,20 @@ const client = new MongoClient(uri, {
 });
 
 
-const roomCollections = client
-  .db("HotelManagementSystem")
-  .collection("allRooms")
-const bookedCollections = client
-  .db("HotelManagementSystem")
-  .collection("allBookedInfo")
+
+
 async function run() {
   try {
+
+    const roomCollections = client
+      .db("HotelManagementSystem")
+      .collection("allRooms");
+    const bookedCollections = client
+      .db("HotelManagementSystem")
+      .collection("allBookedInfo");
+    const reviewCollections = client
+      .db("HotelManagementSystem")
+      .collection("allReview");
 
     
 
@@ -103,6 +109,12 @@ async function run() {
       const id = req.params.id 
       const query = {_id: new ObjectId(id)}
       const result = await bookedCollections.deleteOne(query)
+      res.send(result)
+    })
+
+    app.post("/allReview", async(req,res)=>{
+      const reviewInfo = req.body 
+      const result = await reviewCollections.insertOne(reviewInfo)
       res.send(result)
     })
 

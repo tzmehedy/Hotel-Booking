@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute"
 import Rooms from "../Pages/Rooms/Rooms"
 import RoomDetails from "../Pages/Rooms/RoomDetails"
 import UpdateBookings from "../Pages/MyBookings/UpdateBookings"
+import Review from "../Pages/Review/Review"
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
             `http://localhost:5000/updateBookings/${params.id}`
           ),
       },
+      {
+        path: "/review/:category",
+        element: <PrivateRoute>
+          <Review></Review>
+        </PrivateRoute>
+      }
     ],
   },
 ]);
