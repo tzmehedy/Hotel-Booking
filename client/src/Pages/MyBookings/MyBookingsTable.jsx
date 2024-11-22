@@ -14,7 +14,7 @@ const MyBookingsTable = ({ info }) => {
       <td>{info.noOfRooms}</td>
       <td>{info.totalPrice}</td>
       <td className="flex text-xl space-x-3">
-        <Link>
+        <Link to={`/updateBookings/${info?._id}`}>
            <CiEdit></CiEdit>
         </Link>
         <Link>
