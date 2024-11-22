@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
+  const d1 = new Date(info.checkIn)
+  const d2 = new Date()
+ 
+ 
   const handelDelete = () => {
-
     Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
@@ -29,6 +32,7 @@ const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
         setBookedInfo(remainingBookedInfo)
       }
     })
+    axios.patch(`http://localhost:5000`);
   }
 });
 
@@ -48,9 +52,12 @@ const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
         <Link to={`/updateBookings/${info?._id}`}>
           <CiEdit></CiEdit>
         </Link>
-        <Link onClick={handelDelete}>
+        <button
+          disabled={d1.getDate() - 1 === d2.getDate()}
+          onClick={handelDelete}
+        >
           <MdCancel></MdCancel>
-        </Link>
+        </button>
       </td>
     </tr>
   );
