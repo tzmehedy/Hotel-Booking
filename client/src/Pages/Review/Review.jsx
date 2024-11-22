@@ -5,8 +5,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const Review = () => {
-    const { user } = useContext(AuthContext);
-     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
     const d = new Date()
     const params = useParams()
     const handelReview = (e) =>{
@@ -22,7 +22,7 @@ const Review = () => {
           return;
         } 
         const comments = form.comments.value
-        const category = params.category 
+        const bookedRoomId = params.id 
 
         
 
@@ -32,7 +32,7 @@ const Review = () => {
           timeStamp,
           rating,
           comments,
-          category,
+          bookedRoomId,
           photoUrl,
         };
         
@@ -43,7 +43,15 @@ const Review = () => {
         .then(data=>{
             if(data.data.insertedId){
                 toast.success("Your review is successfully added")
-                navigate("/myBookings")
+                axios.patch(
+                  `http://localhost:5000/updateReviewStatus/${bookedRoomId}`
+                )
+                .then(data=>{
+                    if (data.data.modifiedCount===1) {
+                      navigate("/myBookings");
+                    }
+                })
+                
             }
         })
 
@@ -122,6 +130,7 @@ const Review = () => {
           </div>
           <div className="text-center">
             <button
+              
               className="btn bg-[#f99810f6] text-white"
             >
               Review

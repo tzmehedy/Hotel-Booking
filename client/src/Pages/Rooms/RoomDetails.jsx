@@ -32,7 +32,8 @@ const RoomDetails = () => {
       const price = roomDetailsInfo.pricePerNight
       const totalPrice = noOfRooms*price
       const remainingRoom = roomDetailsInfo.totalRoom - noOfRooms
-      const category = roomDetailsInfo.category 
+      const category = roomDetailsInfo.category
+      const review = "no"
 
       const booksInfo = {
         checkIn,
@@ -42,7 +43,8 @@ const RoomDetails = () => {
         price,
         totalPrice,
         remainingRoom,
-        category
+        category,
+        review
       };
       setCheck(booksInfo)
     }

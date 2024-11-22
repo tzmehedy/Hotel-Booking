@@ -118,6 +118,20 @@ async function run() {
       res.send(result)
     })
 
+    app.patch("/updateReviewStatus/:id", async(req,res)=>{
+      const id = req.params.id 
+      const query = {_id: new ObjectId(id)}
+
+      const doc = {
+        $set: {
+          review: "yes"
+        }
+      }
+
+      const result = await bookedCollections.updateOne(query,doc)
+      res.send(result)
+    })
+
 
     
     console.log(
