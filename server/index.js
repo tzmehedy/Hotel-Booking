@@ -80,7 +80,24 @@ async function run() {
       const query = {_id: new ObjectId(id)}
       const result = await bookedCollections.findOne(query)
       res.send(result)
-    });
+    })
+
+    app.patch("/updateDate/:id", async(req,res)=>{
+      const id = req.params.id 
+      const updatedDate = req.body 
+      console.log(updatedDate)
+      const query = {_id: new ObjectId(id)}
+      const updatedDoc = {
+        $set: {
+          checkIn: updatedDate.checkIn,
+          checkOut: updatedDate.checkOut,
+        }
+      }
+
+      const result = await bookedCollections.updateOne(query,updatedDoc)
+      console.log(result)
+      res.send(result)
+    })
 
 
     
