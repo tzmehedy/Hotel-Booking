@@ -5,11 +5,10 @@ import RoomCard from "./RoomCard";
 const Rooms = () => {
     const [rooms, setRooms] = useState([])
 
-    const [categories, setcategories] = useState([])
 
-    useEffect(()=>{
-        getData();
-    }, [])
+    useEffect(() => {
+      getData();
+    }, [rooms]);
 
     const getData = async() =>{
         const { data } = await axios.get(`${import.meta.env.VITE_Url}/rooms`)

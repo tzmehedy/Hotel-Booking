@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import img1 from "../../assets/images/icons/clening.png"
 import img2 from "../../assets/images/icons/breakfast.png"
 import img3 from "../../assets/images/icons/carparking.png"
@@ -11,12 +11,15 @@ import img7 from "../../assets/images/icons/smimmingpool.png"
 import img8 from "../../assets/images/icons/spa.png"
 import img9 from "../../assets/images/icons/wifi.png"
 import { AuthContext } from '../../Provider/AuthProvider';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 const RoomDetails = () => {
     const roomDetailsInfo = useLoaderData()
     const [check,setCheck] = useState({})
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate()
    
 
     const getBooksInfo= (e) =>{
@@ -28,6 +31,8 @@ const RoomDetails = () => {
       const email = user?.email
       const price = roomDetailsInfo.pricePerNight
       const totalPrice = noOfRooms*price
+      const remainingRoom = roomDetailsInfo.totalRoom - noOfRooms
+      const category = roomDetailsInfo.category 
 
       const booksInfo = {
         checkIn,
@@ -36,13 +41,28 @@ const RoomDetails = () => {
         email,
         price,
         totalPrice,
+        remainingRoom,
+        category
       };
       setCheck(booksInfo)
     }
 
-    const handelBooks = () =>{
-      
+    const handelBooks = async() =>{
+
+      const {data} = await axios.post("http://localhost:5000/allBooked", check)
+
+     if(data.insertedId){
+      toast.success("Your booked successfully")
+      navigate("/rooms")
+      axios.patch(
+        `http://localhost:5000/updateNoOFRooms/${roomDetailsInfo._id}`,
+        check
+      )
+      .then(data=>console.log(data))
+     }
     }
+
+   
 
     return (
       <div className="mt-20 flex flex-col-reverse md:flex-row p-3 md:space-x-3">
@@ -124,7 +144,7 @@ const RoomDetails = () => {
                   {/* if there is a button in div, it will close the modal */}
                   <div className="space-x-3">
                     <button className="btn">close</button>
-                    <Link onClick={handelBooks} to={"/rooms"} className="btn bg-[#f99810f6]">
+                    <Link onClick={handelBooks} className="btn bg-[#f99810f6]">
                       Book
                     </Link>
                   </div>

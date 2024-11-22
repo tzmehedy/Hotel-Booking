@@ -25,10 +25,17 @@ const client = new MongoClient(uri, {
   },
 });
 
+
+const roomCollections = client
+  .db("HotelManagementSystem")
+  .collection("allRooms")
+const bookedCollections = client
+  .db("HotelManagementSystem")
+  .collection("allBookedInfo")
 async function run() {
   try {
 
-    const roomCollections = client.db("HotelManagementSystem").collection("allRooms")
+    
 
     app.get("/rooms", async(req,res)=>{
         const result = await roomCollections.find().toArray()
@@ -40,6 +47,25 @@ async function run() {
         const query = {_id: new ObjectId(id)}
         const result = await roomCollections.findOne(query)
         res.send(result)
+    })
+
+    app.post("/allBooked", async(req,res)=>{
+      const bookedInfo = req.body
+      const result = await bookedCollections.insertOne(bookedInfo)
+      res.send(result)
+    })
+
+    app.patch("/updateNoOFRooms/:id", async(req,res)=>{
+      const id = req.params.id 
+      const check = req.body
+      const query = {_id: new ObjectId(id)}
+      const updateDoc = {
+        $set: {
+          totalRoom: check.remainingRoom
+        }
+      }
+      const result = await roomCollections.updateOne(query, updateDoc)
+      res.send(result)
     })
 
 
