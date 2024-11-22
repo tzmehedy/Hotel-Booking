@@ -68,6 +68,13 @@ async function run() {
       res.send(result)
     })
 
+    app.get("/myBookedInfo", async(req,res)=>{
+      const email = req.query.email 
+      const query = {email:email}
+      const result = await bookedCollections.find(query).toArray();
+      res.send(result)
+    })
+
 
     
     console.log(
