@@ -7,15 +7,15 @@ const MyBookings = () => {
     const {user} = useContext(AuthContext)
     const [bookedInfo, setBookedInfo] = useState([])
 
-    useEffect(()=>{
-        const getBookedInfo = async() =>{
-            const { data } = await axios.get(
-              `http://localhost:5000/myBookedInfo?email=${user?.email}`
-            )
-            setBookedInfo(data)
-        }
-        getBookedInfo()
-    },[])
+    useEffect(() => {
+      const getBookedInfo = async () => {
+        const { data } = await axios.get(
+          `http://localhost:5000/myBookedInfo?email=${user?.email}`
+        );
+        setBookedInfo(data);
+      };
+      getBookedInfo();
+    }, [bookedInfo])
 
 
     
@@ -37,9 +37,13 @@ const MyBookings = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {
-                bookedInfo.map(info=><MyBookingsTable info={info}></MyBookingsTable>)
-              }
+              {bookedInfo.map((info) => (
+                <MyBookingsTable
+                  info={info}
+                  bookedInfo={bookedInfo}
+                  setBookedInfo={setBookedInfo}
+                ></MyBookingsTable>
+              ))}
             </tbody>
           </table>
         </div>
