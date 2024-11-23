@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios"
 
 const Login = () => {
   const { user, login, loginWithGoogle } = useContext(AuthContext);
@@ -17,8 +18,12 @@ const Login = () => {
     const email = form.email.value 
     const password = form.password.value
 
+    const loggedUser = {email}
+
     login(email, password)
     .then(result=>{
+      axios.post("http://localhost:5000/jwt",loggedUser)
+      .then(data=>console.log(data))
       toast.success("login successfully")
       navigate(location.state? location.state : "/")
     })
