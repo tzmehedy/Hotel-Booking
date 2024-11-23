@@ -130,6 +130,11 @@ async function run() {
       res.send(result)
     })
 
+    app.get("/reviews", async(req,res)=>{
+      const result = await reviewCollections.find().toArray()
+      res.send(result)
+    })
+
     
 
 

@@ -79,9 +79,6 @@ const RoomDetails = () => {
           <p className="">Price: ${roomDetailsInfo.pricePerNight}/per night</p>
           <p>Total Rooms Available: {roomDetailsInfo.totalRoom}</p>
           <p className="text-[#f99810f6] font-bold">
-            Available: {roomDetailsInfo.availability ? "Yes" : "No"}
-          </p>
-          <p className="text-[#f99810f6] font-bold">
             Offer:{" "}
             {roomDetailsInfo.specialOffers
               ? roomDetailsInfo.specialOffers

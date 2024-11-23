@@ -2,6 +2,7 @@ import Banner from "../../Components/Banner/Banner";
 import Accommodations from "./Accommodations";
 import Feature from "./Feature";
 import GetInTouch from "./GetInTouch";
+import Testimonial from "./Testimonial";
 
 
 const Home = () => {
@@ -14,6 +15,9 @@ const Home = () => {
 
         <div className="container mx-auto">
           <Feature></Feature>
+        </div>
+        <div className="container mx-auto">
+          <Testimonial></Testimonial>
         </div>
 
         <div className="container mx-auto">

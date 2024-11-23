@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img1 from "../../assets/images/HotelBookingimages14.jpg"
 import img2 from "../../assets/images/HotelBookingimages15.jpg"
 import img3 from "../../assets/images/HotelBookingimages16.jpg"
@@ -32,7 +33,7 @@ const Feature = () => {
             feugiat. Donec velit libero, feugiat ac dictum vel, dignissim id
             ante. Praesent hendrerit posuere condimentum.
           </p>
-          <button className="btn bg-[#f99810f6] text-white font-bold">Book now</button>
+          <Link to={"/rooms"} className="btn bg-[#f99810f6] text-white font-bold">Book now</Link>
         </div>
 
         <div className="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-x-2">
