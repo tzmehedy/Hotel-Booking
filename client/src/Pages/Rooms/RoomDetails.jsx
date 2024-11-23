@@ -20,6 +20,7 @@ const RoomDetails = () => {
     const [check,setCheck] = useState({})
     const {user} = useContext(AuthContext)
     const navigate = useNavigate()
+    const currentNoOfRooms = check.remainingRoom
    
 
     const getBooksInfo= (e) =>{
@@ -32,8 +33,10 @@ const RoomDetails = () => {
       const price = roomDetailsInfo.pricePerNight
       const totalPrice = noOfRooms*price
       const remainingRoom = roomDetailsInfo.totalRoom - noOfRooms
+      console.log(typeof(remainingRoom))
       const category = roomDetailsInfo.category
       const review = "no"
+      const roomId = roomDetailsInfo._id
 
       const booksInfo = {
         checkIn,
@@ -44,7 +47,8 @@ const RoomDetails = () => {
         totalPrice,
         remainingRoom,
         category,
-        review
+        review,
+        roomId,
       };
       setCheck(booksInfo)
     }
@@ -56,11 +60,11 @@ const RoomDetails = () => {
      if(data.insertedId){
       toast.success("Your booked successfully")
       navigate("/rooms")
-      axios.patch(
-        `http://localhost:5000/updateNoOFRooms/${roomDetailsInfo._id}`,
-        check
-      )
-      .then(data=>console.log(data))
+      axios
+        .patch(`http://localhost:5000/updateNoOFRooms/${roomDetailsInfo._id}`, {
+          currentNoOfRooms,
+        })
+        .then((data) => console.log(data));
      }
     }
 

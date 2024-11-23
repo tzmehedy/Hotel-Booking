@@ -63,13 +63,13 @@ async function run() {
 
     app.patch("/updateNoOFRooms/:id", async(req,res)=>{
       const id = req.params.id 
-      const check = req.body
+      const noOfRooms = req.body
       const query = {_id: new ObjectId(id)}
       const updateDoc = {
         $set: {
-          totalRoom: check.remainingRoom
-        }
-      }
+          totalRoom: noOfRooms.currentNoOfRooms,
+        },
+      };
       const result = await roomCollections.updateOne(query, updateDoc)
       res.send(result)
     })
@@ -91,7 +91,6 @@ async function run() {
     app.patch("/updateDate/:id", async(req,res)=>{
       const id = req.params.id 
       const updatedDate = req.body 
-      console.log(updatedDate)
       const query = {_id: new ObjectId(id)}
       const updatedDoc = {
         $set: {
@@ -101,7 +100,6 @@ async function run() {
       }
 
       const result = await bookedCollections.updateOne(query,updatedDoc)
-      console.log(result)
       res.send(result)
     })
 
@@ -131,6 +129,8 @@ async function run() {
       const result = await bookedCollections.updateOne(query,doc)
       res.send(result)
     })
+
+    
 
 
     

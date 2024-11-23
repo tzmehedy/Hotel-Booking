@@ -1,47 +1,50 @@
 import axios from "axios";
-import { CiEdit } from "react-icons/ci"
+import { CiEdit } from "react-icons/ci";
 import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { MdOutlineReviews } from "react-icons/md";
 
 const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
-
-  const d1 = new Date(info.checkIn)
-  const d2 = new Date()
-
+  const d1 = new Date(info.checkIn);
+  const d2 = new Date();
   
- 
- 
+
   const handelDelete = () => {
     Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-    axios.delete(`http://localhost:5000/deleteMyBookings/${info._id}`)
-    .then(data=>{
-      if(data.data.deletedCount===1){
-        const remainingBookedInfo = bookedInfo.filter(b=>b._id !== info_id)
-        setBookedInfo(remainingBookedInfo)
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+        const currentNoOfRooms = info.remainingRoom + parseInt(info.noOfRooms)
+        axios
+          .patch(`http://localhost:5000/updateNoOFRooms/${info?.roomId}`, {
+            currentNoOfRooms,
+          })
+          .then((data) => console.log(data));
+        axios
+          .delete(`http://localhost:5000/deleteMyBookings/${info?._id}`)
+          .then((data) => {
+            if (data.data.deletedCount === 1) {
+              const remainingBookedInfo = bookedInfo.filter(
+                (b) => b._id !== info._id
+              );
+              setBookedInfo(remainingBookedInfo);
+            }
+          });
       }
-    })
-    
-  }
-});
-
-    
-  }
+    });
+  };
   return (
     <tr>
       <td>
