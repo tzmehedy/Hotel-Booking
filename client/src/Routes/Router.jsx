@@ -58,16 +58,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/updateBookings/${params.id}`
-          ),
+          fetch(`http://localhost:5000/updateBookings/${params.id}`),
       },
       {
         path: "/review/:id",
-        element: <PrivateRoute>
-          <Review></Review>
-        </PrivateRoute>
-      }
+        element: (
+          <PrivateRoute>
+            <Review></Review>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

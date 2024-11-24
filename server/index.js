@@ -32,13 +32,15 @@ const client = new MongoClient(uri, {
 });
 
 const verifyToken = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.token
+  console.log(token)
   if (!token) return res.status(401).send({ message: "Unauthorized Access" });
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     if (err) {
       console.log(err);
       return res.status(401).send({ message: "Unauthorized Access" });
     }
+    console.log(decoded)
     req.user = decoded;
     next();
   });
@@ -83,7 +85,11 @@ async function run() {
     });
 
     app.get("/rooms", async (req, res) => {
-      const result = await roomCollections.find().toArray();
+      const sort = req.query.sort;
+      let query ={}
+      let options = {};
+      if (options) options = { sort: { pricePerNight: sort === 'asc'? 1 : -1 } };
+      const result = await roomCollections.find(query,options).toArray();
       res.send(result);
     });
 
@@ -123,14 +129,14 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/updateBookings/:id", verifyToken, async (req, res) => {
+    app.get("/updateBookings/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await bookedCollections.findOne(query);
       res.send(result);
     });
 
-    app.patch("/updateDate/:id", verifyToken, async (req, res) => {
+    app.patch("/updateDate/:id", async (req, res) => {
       const id = req.params.id;
       const updatedDate = req.body;
       const query = { _id: new ObjectId(id) };

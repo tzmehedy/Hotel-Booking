@@ -1,7 +1,8 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const UpdateBookings = () => {
   const singleBookedInfo = useLoaderData()
@@ -15,7 +16,7 @@ const UpdateBookings = () => {
 
     const updateInfo = {checkIn, checkOut}
 
-    axios.patch(`http://localhost:5000/updateDate/${singleBookedInfo._id}`, updateInfo,{withCredentials:true})
+    axios.patch(`http://localhost:5000/updateDate/${singleBookedInfo._id}`, updateInfo)
     .then(data=>{
         if(data.data.modifiedCount){
             toast.success("Update Successfully")
