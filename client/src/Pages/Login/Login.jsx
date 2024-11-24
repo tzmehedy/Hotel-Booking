@@ -18,11 +18,12 @@ const Login = () => {
     const email = form.email.value 
     const password = form.password.value
 
-    const loggedUser = {email}
+  
 
     login(email, password)
     .then(result=>{
-      axios.post("http://localhost:5000/jwt",loggedUser)
+      console.log(result)
+      axios.post("http://localhost:5000/jwt",{email:result?.user?.email}, {withCredentials:true})
       .then(data=>console.log(data))
       toast.success("login successfully")
       navigate(location.state? location.state : "/")

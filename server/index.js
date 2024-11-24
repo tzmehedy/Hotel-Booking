@@ -1,14 +1,21 @@
 const express = require("express")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
+const cookieParser = require("cookie-parser")
 require("dotenv").config()
 const app = express()
 const port = process.env.PORT || 5000
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
-app.use(cors())
+
+const corsOptions = {
+  origin: ["http://localhost:5173", "http://localhost:5000"],
+  credentials:true
+};
+app.use(cors(corsOptions))
 app.use(express.json())
+app.use(cookieParser())
 
 app.get("/", (req, res)=>{
     res.send("The hotel management system is coming")
@@ -47,8 +54,16 @@ async function run() {
     // JWT 
     app.post("/jwt", async(req,res)=>{
       const user = req.body
-      const token = jwt.sign(user,"secret", {expiresIn:"2h"})
-      console.log(token)
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
+        expiresIn: "2h",
+      });
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: process.env.NODE_ENV === "production" ? "node" : "strict",
+        })
+        .send({ successStatus: true });
     })
 
 
