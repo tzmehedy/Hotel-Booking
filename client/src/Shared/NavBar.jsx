@@ -80,7 +80,7 @@ const NavBar = () => {
               {navLink}
             </ul>
           </div>
-          <Link className="text-[#f99810f6] text-xl">
+          <Link to={"/"} className="text-[#f99810f6] text-xl">
             <img className="w-16 md:w-36 h-7 md:h-12" src={logo} alt="" />
           </Link>
         </div>
@@ -90,9 +90,9 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end space-x-3">
-          <a className="btn bg-[#f99810f6] font-bold text-white border-none ">
+          <Link to={"/rooms"} className="btn bg-[#f99810f6] font-bold text-white border-none ">
             Book Now
-          </a>
+          </Link>
           {user ? (
             <>
               <img

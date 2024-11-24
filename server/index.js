@@ -85,10 +85,13 @@ async function run() {
     });
 
     app.get("/rooms", async (req, res) => {
-      const sort = req.query.sort;
-      let query ={}
-      let options = {};
-      if (options) options = { sort: { pricePerNight: sort === 'asc'? 1 : -1 } };
+      const sort = req.query.sort
+      const lowPrice = parseInt(req.query.lowPrice)
+      const highPrice = parseInt(req.query.highPrice)
+      let query = {}
+      if(lowPrice && highPrice) query = { pricePerNight: {$gte:lowPrice, $lte:highPrice}}
+      let options = {}
+      if (sort) options = { sort: { pricePerNight: sort === "asc" ? 1 : -1 } };
       const result = await roomCollections.find(query,options).toArray();
       res.send(result);
     });
