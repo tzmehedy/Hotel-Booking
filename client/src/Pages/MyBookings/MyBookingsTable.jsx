@@ -30,10 +30,10 @@ const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
         axios
           .patch(`http://localhost:5000/updateNoOFRooms/${info?.roomId}`, {
             currentNoOfRooms,
-          })
+          }, {withCredentials:true})
           .then((data) => console.log(data));
         axios
-          .delete(`http://localhost:5000/deleteMyBookings/${info?._id}`)
+          .delete(`http://localhost:5000/deleteMyBookings/${info?._id}`,{withCredentials:true})
           .then((data) => {
             if (data.data.deletedCount === 1) {
               const remainingBookedInfo = bookedInfo.filter(
@@ -56,17 +56,19 @@ const MyBookingsTable = ({ info, bookedInfo, setBookedInfo }) => {
       <td>{info.noOfRooms}</td>
       <td>{info.totalPrice}</td>
       <td>{info.review}</td>
-      <td className="flex text-xl space-x-3">
+      <td className="flex text-xl space-x-3 items-center justify-center">
         <Link title="Edit" to={`/updateBookings/${info?._id}`}>
           <CiEdit></CiEdit>
         </Link>
-        <button
-          title="Cancel"
-          disabled={d1.getDate() - 1 === d2.getDate()}
-          onClick={handelDelete}
-        >
-          <MdCancel></MdCancel>
-        </button>
+        <Link>
+          <button
+            title="Cancel"
+            disabled={d1.getDate() - 1 === d2.getDate()}
+            onClick={handelDelete}
+          >
+            <MdCancel></MdCancel>
+          </button>
+        </Link>
         <Link title="Give Review" to={`/review/${info._id}`}>
           <button disabled={info.review === "yes"}>
             <MdOutlineReviews></MdOutlineReviews>

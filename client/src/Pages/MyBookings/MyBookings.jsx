@@ -10,12 +10,12 @@ const MyBookings = () => {
     useEffect(() => {
       const getBookedInfo = async () => {
         const { data } = await axios.get(
-          `http://localhost:5000/myBookedInfo?email=${user?.email}`
+          `http://localhost:5000/myBookedInfo?email=${user?.email}`,{withCredentials:true}
         );
         setBookedInfo(data);
       };
       getBookedInfo();
-    }, [bookedInfo])
+    }, [])
 
 
     

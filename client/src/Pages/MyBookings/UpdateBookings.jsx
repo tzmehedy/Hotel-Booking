@@ -15,7 +15,7 @@ const UpdateBookings = () => {
 
     const updateInfo = {checkIn, checkOut}
 
-    axios.patch(`http://localhost:5000/updateDate/${singleBookedInfo._id}`, updateInfo)
+    axios.patch(`http://localhost:5000/updateDate/${singleBookedInfo._id}`, updateInfo,{withCredentials:true})
     .then(data=>{
         if(data.data.modifiedCount){
             toast.success("Update Successfully")
