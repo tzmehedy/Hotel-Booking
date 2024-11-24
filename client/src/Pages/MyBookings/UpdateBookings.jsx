@@ -5,27 +5,29 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const UpdateBookings = () => {
-  const singleBookedInfo = useLoaderData()
-  const navigate = useNavigate()
+  const singleBookedInfo = useLoaderData();
+  const navigate = useNavigate();
 
-  const handelBookedUpdate = (e)=>{
-    e.preventDefault()
-    const form = e.target 
-    const checkIn = form.checkIn.value 
-    const checkOut = form.checkOut.value 
+  const handelBookedUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const checkIn = form.checkIn.value;
+    const checkOut = form.checkOut.value;
 
-    const updateInfo = {checkIn, checkOut}
+    const updateInfo = { checkIn, checkOut };
 
-    axios.patch(`http://localhost:5000/updateDate/${singleBookedInfo._id}`, updateInfo)
-    .then(data=>{
-        if(data.data.modifiedCount){
-            toast.success("Update Successfully")
-            navigate("/myBookings")
+    axios
+      .patch(
+        `http://localhost:5000/updateDate/${singleBookedInfo._id}`,
+        updateInfo
+      )
+      .then((data) => {
+        if (data.data.modifiedCount) {
+          toast.success("Update Successfully");
+          navigate("/myBookings");
         }
-    })
-
-    
-  }
+      });
+  };
   return (
     <div className="mt-20 bg-gray-100 p-20">
       <form onSubmit={handelBookedUpdate} className="space-y-4">

@@ -179,7 +179,14 @@ async function run() {
     });
 
     app.get("/reviews", async (req, res) => {
-      const result = await reviewCollections.find().toArray();
+      const query = {}
+      const options = {
+        sort: {
+          timeStamp: -1
+        },
+      };
+
+      const result = await reviewCollections.find(query,options).toArray();
       res.send(result);
     });
 
