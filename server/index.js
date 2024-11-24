@@ -63,7 +63,17 @@ async function run() {
           secure: process.env.NODE_ENV === "production",
           sameSite: process.env.NODE_ENV === "production" ? "node" : "strict",
         })
-        .send({ successStatus: true });
+        .send({success: true })
+    })
+
+    app.get("/logOut", (req,res)=>{
+      res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "node" : "strict",
+        maxAge: 0
+      })
+      .send({success: true })
     })
 
 

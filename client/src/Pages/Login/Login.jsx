@@ -22,7 +22,6 @@ const Login = () => {
 
     login(email, password)
     .then(result=>{
-      console.log(result)
       axios.post("http://localhost:5000/jwt",{email:result?.user?.email}, {withCredentials:true})
       .then(data=>console.log(data))
       toast.success("login successfully")
@@ -36,6 +35,13 @@ const Login = () => {
 
   loginWithGoogle()
   .then(result=>{
+    axios
+      .post(
+        "http://localhost:5000/jwt",
+        { email: result?.user?.email },
+        { withCredentials: true }
+      )
+      .then((data) => console.log(data));
     toast.success("Login SuccessFully")
     navigate(location.state ? location.state : "/");
   })

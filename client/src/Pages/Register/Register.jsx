@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
 
 
 const Register = () => {
@@ -25,7 +26,14 @@ const Register = () => {
     .then(result=>
     {
       result && profileUpdate(name, photo)
-      setUser({...user, photoURL:photo, displayName:name})
+      axios
+        .post(
+          "http://localhost:5000/jwt",
+          { email: result?.user?.email },
+          { withCredentials: true }
+        )
+        .then((data) => console.log(data))
+      setUser({...result, photoURL:photo, displayName:name})
       navigate("/")
 
     }
@@ -33,8 +41,6 @@ const Register = () => {
     .catch(error=>console.log(error.message))
 
   }
-
-  console.log(user)
     return (
       <div className="mt-20">
         <div className="hero bg-base-200 min-h-screen">
