@@ -9,12 +9,14 @@ import Rooms from "../Pages/Rooms/Rooms"
 import RoomDetails from "../Pages/Rooms/RoomDetails"
 import UpdateBookings from "../Pages/MyBookings/UpdateBookings"
 import Review from "../Pages/Review/Review"
+import Error from "../Pages/Error/Error"
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
